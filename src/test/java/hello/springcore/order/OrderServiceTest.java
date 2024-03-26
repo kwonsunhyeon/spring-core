@@ -1,5 +1,6 @@
 package hello.springcore.order;
 
+import hello.springcore.AppConfig;
 import hello.springcore.member.Grade;
 import hello.springcore.member.Member;
 import hello.springcore.member.MemberService;
@@ -9,8 +10,9 @@ import org.junit.jupiter.api.Test;
 
 
 public class OrderServiceTest {
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
+    AppConfig appConfig = new AppConfig();
+    MemberService memberService = appConfig.memberService();
+    OrderService orderService = appConfig.orderService();
 
     @Test
     void createOrder() {
@@ -19,7 +21,7 @@ public class OrderServiceTest {
         memberService.join(member);
 
         Order order = orderService.createOrder(memberId, "itemA", 20000);
-        Assertions.assertThat(order.getDiscountPrice()).isEqualTo(2000);
+        Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
     }
 }
 
