@@ -12,9 +12,9 @@ public class OrderServiceImpl implements OrderService{
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
-    public OrderServiceImpl(MemoryMemberRepository memoryMemberRepository, FixDiscountPolicy fixDiscountPolicy) {
+    public OrderServiceImpl(MemoryMemberRepository memoryMemberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memoryMemberRepository;
-        this.discountPolicy =  fixDiscountPolicy;
+        this.discountPolicy =  discountPolicy;
 
     }
 
@@ -25,9 +25,6 @@ public class OrderServiceImpl implements OrderService{
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
 }
-
-
-
 
 
 /*회원을 메모리에서 조회하고,정액(고정금액) 할인 정책을 지원해도 주문 서비스를 변경하지 않아도 된다.

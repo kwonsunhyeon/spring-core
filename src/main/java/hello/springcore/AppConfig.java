@@ -10,21 +10,21 @@ import hello.springcore.member.MemoryMemberRepository;
 import hello.springcore.order.OrderService;
 import hello.springcore.order.OrderServiceImpl;
 
-public class AppConfig {
+public class  AppConfig {
     public MemberService memberService(){
         return new MemberServiceImpl(new MemoryMemberRepository());
     }
     public OrderService orderService(){
         return new OrderServiceImpl(
                     new MemoryMemberRepository(),
-                    new FixDiscountPolicy());
+                    discountPolicy());
     }
     public MemberRepository memberRepository(){
         return new MemoryMemberRepository();
     }
     public DiscountPolicy discountPolicy(){
-    //    return new FixDiscountPolicy();  ↙할인정책 변경 가능
-        return new RateDiscountPolicy();
+    return new FixDiscountPolicy();
+    //   return new RateDiscountPolicy();
     }
 }
 
